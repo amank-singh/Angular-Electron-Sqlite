@@ -1,14 +1,19 @@
 {
-  "name": "electron-sqllite-angular",
+  "name": "electron-sqlite-angular",
   "version": "0.0.0",
+  "main": "src/index.ts",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "electron-forge start",
+    "devbuild":"ng build --watch",
+    "publish": "ng build && electron-forge publish --platform=win32",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
+  "author": "Author",
+  "description": "ElectronDesktopApp",
   "private": true,
   "dependencies": {
     "@angular/animations": "~8.1.0",
@@ -19,19 +24,57 @@
     "@angular/platform-browser": "~8.1.0",
     "@angular/platform-browser-dynamic": "~8.1.0",
     "@angular/router": "~8.1.0",
+    "@ngx-translate/core": "^11.0.1",
+    "@ngx-translate/http-loader": "^4.0.0",
+    "electron": "^5.0.6",
+    "ngx-electron": "^2.1.1",
+    "reflect-metadata": "^0.1.13",
     "rxjs": "~6.4.0",
+    "sqlite3": "^4.0.9",
     "tslib": "^1.9.0",
+    "typeorm": "^0.2.18",
     "zone.js": "~0.9.1"
+  },
+  "config": {
+    "forge": {
+      "make_targets": {
+        "win32": [
+          "squirrel"
+        ],
+        "darwin": [
+          "zip"
+        ],
+        "linux": [
+          "deb",
+          "rpm"
+        ]
+      },
+      "electronPackagerConfig": {
+        "packageManager": "npm"
+      },
+      "electronWinstallerConfig": {},
+      "electronInstallerDebian": {},
+      "electronInstallerRedhat": {},
+      "github_repository": {},
+      "windowsStoreConfig": {
+        "packageName": "",
+        "name": "test"
+      }
+    }
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.801.0",
     "@angular/cli": "~8.1.0",
     "@angular/compiler-cli": "~8.1.0",
     "@angular/language-service": "~8.1.0",
-    "@types/node": "~8.9.4",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "^8.9.5",
     "codelyzer": "^5.0.0",
+    "electron-compilers": "^5.9.0",
+    "electron-forge": "^5.2.4",
+    "electron-prebuilt-compile": "4.0.0",
+    "electron-reload": "^1.4.0",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",
